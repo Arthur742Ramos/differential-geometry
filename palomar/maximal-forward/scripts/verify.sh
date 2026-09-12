@@ -31,6 +31,8 @@ if grep -ERn '\b(sorry|admit|sorryAx)\b|^[[:space:]]*(axiom|unsafe)\b' \
   exit 1
 fi
 
+ruby scripts/validate-formalization.rb formalization.yaml
+
 lake build
 lake env lean Challenge.lean
 lake env lean Solution.lean
