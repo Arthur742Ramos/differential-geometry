@@ -47,9 +47,12 @@ status:
   sorry_in_definitions: 0
   axioms: ["propext", "Classical.choice", "Quot.sound"]
   main_results:
-    - >-
-      Every nonempty coherent family of positive-horizon forward pieces has a
-      finite least-upper-bound envelope or an immortal envelope.
+    - declaration: "DifferentialGeometry.Palomar.Submission.exists_finite_or_immortal_envelope"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+      literature_dependencies: []
 
 automation:
   methods:
