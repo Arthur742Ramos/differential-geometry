@@ -1,0 +1,108 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Maximal forward envelope dichotomy"
+  description: >-
+    A Lean formalization of the abstract gluing principle behind maximal
+    forward evolutions. For any nonempty coherent family of partial evolutions
+    with positive finite horizons, it constructs either a finite envelope at
+    the least upper bound of all horizons or an immortal envelope covering
+    every nonnegative time. Both envelopes agree with every original partial
+    evolution throughout its domain.
+  authors:
+    - "Arthur Freitas Ramos"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Arthur Freitas Ramos"
+
+classification:
+  arxiv: ["math.LO"]
+  msc2020: ["03B35", "06A06"]
+
+sources:
+  - title: "Coherent forward-germ envelope dichotomy"
+    authors:
+      - "Arthur Freitas Ramos"
+    type: "original-proof"
+    relationship: "other"
+    note: >-
+      The result was extracted as the order-theoretic gluing core of a Lean
+      construction of arbitrary-data maximal forward Ricci flows.
+    license: "Apache-2.0"
+    author_endorsement: "participated"
+
+status:
+  scope: >-
+    The formalization proves the finite-or-immortal envelope dichotomy for
+    compatible partial functions on real time. It includes positivity of the
+    finite endpoint, its least-upper-bound property, coverage of every time
+    before the endpoint, unbounded-horizon coverage in the immortal branch,
+    and agreement with every input piece. It deliberately does not formalize
+    Ricci-flow short-time existence, geometric uniqueness, regularity,
+    continuation criteria, or curvature singularities; those belong to the
+    surrounding differential-geometry development and are not claimed by this
+    Mathlib-only Palomar surface.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+  main_results:
+    - declaration: "DifferentialGeometry.Palomar.Submission.exists_finite_or_immortal_envelope"
+      file: "Solution.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+      literature_dependencies: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["OpenAI GPT-5"]
+      framework: "Codex desktop"
+      tool_setup: >-
+        Agent-assisted statement design, Lean proof construction, iterative
+        kernel checking, dependency-closure audit, and Comparator/NanoDa replay.
+      cost:
+        wall_time: "Approximately two hours within a larger Ricci-flow formalization task"
+        spend_usd: "Subscription-based; not separately tracked"
+        hardware: "Local Apple silicon Mac and GitHub-hosted Linux CI"
+      prompting_notes: >-
+        The agent was asked to prepare a finite-or-immortal maximal-flow result
+        and a Palomar-ready artifact, with exact scope and verification data.
+  spend_usd: "Subscription-based; not separately tracked"
+  notes: >-
+    The human selected the mathematical milestone and required submission-grade
+    verification. The agent implemented and checked the proof; the responsible
+    maintainer retains final submission and registration control.
+
+fidelity:
+  divergences: >-
+    None relative to the stated original abstract result. The principal scope
+    boundary is explicit: this entry is the gluing core, not the geometric
+    Ricci-flow theorem that motivated it.
+
+review:
+  status: "self-assessed"
+  reviewers: ["none"]
+  notes: >-
+    The statement was audited against the proof and its intended use. Lean's
+    kernel, Comparator, and NanoDa checks are mechanical verification, not
+    independent mathematical peer review.
+
+alignment:
+  namespace: "DifferentialGeometry.Palomar.Submission"
+  statements:
+    - source: "Coherent forward-germ envelope dichotomy"
+      lean: "DifferentialGeometry.Palomar.Submission.exists_finite_or_immortal_envelope"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        The finite branch records a positive least upper bound, coverage below
+        it, and restriction to every piece. The immortal branch records
+        unbounded horizons, coverage of all nonnegative times, and the same
+        restriction property.
+
+acknowledgements: >-
+  Mathlib supplies the real-order and conditional-completeness infrastructure;
+  Palomar's template, Comparator, lean4export, Landrun, and NanoDa provide the
+  submission and independent-replay workflow.

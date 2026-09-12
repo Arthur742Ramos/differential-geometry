@@ -1,0 +1,13 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "DifferentialGeometry.Palomar.Submission.exists_finite_or_immortal_envelope"
+  ],
+  "definition_names": [
+    "DifferentialGeometry.Palomar.MaximalForwardEnvelope.Agrees",
+    "DifferentialGeometry.Palomar.MaximalForwardEnvelope.Horizons"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "enable_nanoda": true
+}

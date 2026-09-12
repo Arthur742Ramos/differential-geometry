@@ -3,6 +3,7 @@
 # whitelist
 !/DifferentialGeometry/
 !/.github
+!/palomar/
 !/Examples/
 !/DifferentialGeometry.lean
 !/lakefile.toml

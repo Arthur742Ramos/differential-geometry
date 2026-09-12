@@ -1,0 +1,42 @@
+name: Palomar maximal-forward verification
+
+on:
+  push:
+    branches: [main, codex/palomar-maximal-forward]
+    paths:
+      - "palomar/maximal-forward/**"
+      - ".github/workflows/palomar-maximal-forward.yml"
+  pull_request:
+    paths:
+      - "palomar/maximal-forward/**"
+      - ".github/workflows/palomar-maximal-forward.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Lean, Challenge closure, Comparator, and NanoDa
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          lake-package-directory: palomar/maximal-forward
+          build: true
+          use-mathlib-cache: true
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
+        with:
+          go-version: "1.24.0"
+          cache: false
+      - name: Run submission-grade checks
+        working-directory: palomar/maximal-forward
+        run: ./scripts/verify.sh
